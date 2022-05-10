@@ -1,0 +1,2248 @@
+[
+    {
+        "id": "680bced3b5172e1a",
+        "type": "tab",
+        "label": "Sistema de Telemetria",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "db78a9315e2634db",
+        "type": "serial in",
+        "z": "680bced3b5172e1a",
+        "name": "Entrada de Dados - ESP32",
+        "serial": "86e325ae.59b348",
+        "x": 230,
+        "y": 440,
+        "wires": [
+            [
+                "524dc683debce954",
+                "c81ffeb30d5f097f"
+            ]
+        ]
+    },
+    {
+        "id": "c81ffeb30d5f097f",
+        "type": "split",
+        "z": "680bced3b5172e1a",
+        "name": "Separador de Dados",
+        "splt": ",",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 220,
+        "y": 500,
+        "wires": [
+            [
+                "4250a5391cfc6aa3"
+            ]
+        ]
+    },
+    {
+        "id": "4250a5391cfc6aa3",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Indexador de Número",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(msg.payload)\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 220,
+        "y": 560,
+        "wires": [
+            [
+                "2bebab887d1be7d8"
+            ]
+        ]
+    },
+    {
+        "id": "2bebab887d1be7d8",
+        "type": "switch",
+        "z": "680bced3b5172e1a",
+        "name": "Distribuidor de Dados",
+        "property": "parts.index",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "6",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "7",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "8",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "9",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "10",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "11",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 12,
+        "x": 500,
+        "y": 560,
+        "wires": [
+            [
+                "bcba591467f2298b"
+            ],
+            [
+                "dd1f96db9aad2309"
+            ],
+            [
+                "76da373c4711322b"
+            ],
+            [
+                "012ae6b796583e22"
+            ],
+            [
+                "1abfa36d85701705"
+            ],
+            [
+                "29ae18b29703a274"
+            ],
+            [
+                "8a2b89e28b488e96"
+            ],
+            [
+                "e98a5451cd8455bf",
+                "76766ff602309f57"
+            ],
+            [
+                "a09d2bc36c54050c",
+                "58fa4a2827bea575"
+            ],
+            [
+                "c4a8dd2b43abc027"
+            ],
+            [
+                "d092ea32975ecadb"
+            ],
+            [
+                "51f6d5c792ecb25a"
+            ]
+        ],
+        "outputLabels": [
+            "EixoRoll",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            null
+        ]
+    },
+    {
+        "id": "8a2b89e28b488e96",
+        "type": "ui_gauge",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "group": "82d6b12344dd8896",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Pressão",
+        "label": "hPa",
+        "format": "{{value | number :0}}",
+        "min": 0,
+        "max": "1020",
+        "colors": [
+            "#00b500",
+            "#95f406",
+            "#e9b90c"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 940,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "29ae18b29703a274",
+        "type": "ui_gauge",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "group": "7082c79abc1d8c94",
+        "order": 2,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Temperatura BMP",
+        "label": "°C",
+        "format": "{{value | number :0}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#2421b0",
+            "#d01616"
+        ],
+        "seg1": "15",
+        "seg2": "50",
+        "className": "",
+        "x": 970,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "1abfa36d85701705",
+        "type": "ui_gauge",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "group": "7082c79abc1d8c94",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura MPU",
+        "label": "°C",
+        "format": "{{value | number :0}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#2421b0",
+            "#d01616"
+        ],
+        "seg1": "15",
+        "seg2": "50",
+        "className": "",
+        "x": 970,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "4d32721f69cdf90a",
+        "type": "ui_template",
+        "z": "680bced3b5172e1a",
+        "group": "9f2da61.3353758",
+        "name": "Instrumentos de Voo",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<link rel=\"stylesheet\" href=\"/flight/css/flightindicators.css\"/>\n<script src=\"/flight/js/jquery.flightindicators.js\"></script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 1280,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c1451ebf0373491a",
+        "type": "ui_template",
+        "z": "680bced3b5172e1a",
+        "group": "9f2da61.3353758",
+        "name": "Flight",
+        "order": 1,
+        "width": 8,
+        "height": 9,
+        "format": "<div><span id=\"attitude\"></span><span id=\"heading\"></span><span id=\"airspeed\"></span><span id=\"altimeter\"></span></div>\n\n<script>\n(function(scope) {\n    var options = {\n    \tsize : 200,\t\t\t\t// Sets the size in pixels of the indicator (square)\n    \troll : 0,\t\t\t\t// Roll angle in degrees for an attitude indicator\n    \tpitch : 0,\t\t\t\t// Pitch angle in degrees for an attitude indicator\n    \theading: 0,\t\t\t\t// Heading angle in degrees for an heading indicator\n    \tvario: 0,\t\t\t\t// Variometer in 1000 feets/min for the variometer indicator\n    \tairspeed: 0,\t\t\t// Air speed in knots for an air speed indicator\n    \taltitude: 0,\t\t\t// Altitude in feets for an altimeter indicator\n    \tpressure: 1013.2,\t\t\t// Pressure in hPa for an altimeter indicator\n    \tshowBox : true,\t\t\t// Sets if the outer squared box is visible or not (true or false)\n    \timg_directory : '/flight/img/'\t// The directory where the images are saved to\n    }\n    var atti = $.flightIndicator('#attitude', 'attitude',options);\n    var heading = $.flightIndicator('#heading', 'heading',options);\n    var speed = $.flightIndicator('#airspeed', 'airspeed',options);\n    var alti = $.flightIndicator('#altimeter', 'altimeter',options);\n    scope.$watch('msg', function(msg) {\n        if (msg) {\n          if(msg.topic == \"roll\"){\n              atti.setRoll(msg.payload)\n          }\n          if(msg.topic == \"pitch\"){\n              atti.setPitch(msg.payload)\n          }\n          if(msg.topic == \"heading\"){\n              heading.setHeading(msg.payload)\n          }\n          if(msg.topic == \"speed\"){\n              speed.setAirSpeed(msg.payload)\n          }\n          if(msg.topic == \"alti\"){\n              alti.setAltitude(msg.number)\n          }\n        }\n  });\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1230,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "58846fa5960a0609",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Heading",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload*-1.2",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "heading",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1120,
+        "y": 200,
+        "wires": [
+            [
+                "c1451ebf0373491a"
+            ]
+        ]
+    },
+    {
+        "id": "475f5c5837f92d03",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Eixo de Rolagem",
+        "func": "var obj={\n    \"name\":\"roll\",\n}\nmsg.topic = obj.name;\nnumber = msg.payload;\nreturn msg;\n    ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 260,
+        "wires": [
+            [
+                "c1451ebf0373491a",
+                "58846fa5960a0609"
+            ]
+        ]
+    },
+    {
+        "id": "6dacaf469abf7a29",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Eixo de Arfagem",
+        "func": "var obj={\n    \"name\":\"pitch\",\n}\nmsg.topic = obj.name;\nnumber = msg.payload;\nreturn msg;\n    ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 340,
+        "wires": [
+            [
+                "c1451ebf0373491a"
+            ]
+        ]
+    },
+    {
+        "id": "1e14b4ce62140e67",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Velocidade GPS",
+        "func": "var obj={\n    \"name\":\"speed\",\n}\nmsg.topic = obj.name;\nnumber = msg.payload*3.6;\nreturn msg;\n    ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 420,
+        "wires": [
+            [
+                "c1451ebf0373491a"
+            ]
+        ]
+    },
+    {
+        "id": "f91287287fb01abc",
+        "type": "ui_worldmap",
+        "z": "680bced3b5172e1a",
+        "group": "4b04d399ad050f6b",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "lat": "",
+        "lon": "",
+        "zoom": "",
+        "layer": "OSMC",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "hide",
+        "layers": "hide",
+        "panit": "true",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "true",
+        "coords": "none",
+        "showgrid": "false",
+        "allowFileDrop": "false",
+        "path": "/worldmap",
+        "overlist": "DR,CO,RA,DN,HM",
+        "maplist": "OSMG,OSMC,EsriC,EsriS,EsriT,EsriDG,UKOS,SW",
+        "mapname": "",
+        "mapurl": "",
+        "mapopt": "",
+        "mapwms": false,
+        "x": 1240,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "e98a5451cd8455bf",
+        "type": "ui_text",
+        "z": "680bced3b5172e1a",
+        "group": "bad6f4e2bf1664a5",
+        "order": 5,
+        "width": 4,
+        "height": 2,
+        "name": "",
+        "label": "Latitude",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 940,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "a09d2bc36c54050c",
+        "type": "ui_text",
+        "z": "680bced3b5172e1a",
+        "group": "bad6f4e2bf1664a5",
+        "order": 6,
+        "width": 4,
+        "height": 2,
+        "name": "",
+        "label": "Longitude",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 940,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "5d0939414e6e8d03",
+        "type": "ui_gauge",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "group": "82d6b12344dd8896",
+        "order": 6,
+        "width": 4,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Velocidade Pitot",
+        "label": "Km/h",
+        "format": "{{value | number :0}}",
+        "min": 0,
+        "max": "150",
+        "colors": [
+            "#00b500",
+            "#304991",
+            "#043076"
+        ],
+        "seg1": "10",
+        "seg2": "100",
+        "className": "",
+        "x": 960,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "76766ff602309f57",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Latitude",
+        "func": "msg.payload1=msg.payload;\nreturn msg;\n    ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 740,
+        "wires": [
+            [
+                "0dc5473f11631614"
+            ]
+        ]
+    },
+    {
+        "id": "58fa4a2827bea575",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Longitude",
+        "func": "msg.payload2=msg.payload;\nreturn msg;\n    ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 820,
+        "wires": [
+            [
+                "0dc5473f11631614"
+            ]
+        ]
+    },
+    {
+        "id": "0dc5473f11631614",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Dados para o Mapa",
+        "func": "var obj={\n    \"name\":\"Aeronave\",\n    \"lat\":msg.payload1,\n    \"lon\":msg.payload2,\n}\nmsg.payload=obj;\nreturn msg;\n    ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1150,
+        "y": 780,
+        "wires": [
+            [
+                "f91287287fb01abc"
+            ]
+        ]
+    },
+    {
+        "id": "f01f2d18bb97bf84",
+        "type": "ui_chart",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "group": "cd188c9cd054d7d1",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Velocidade GPS (m/s)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 980,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9634d68adcc583cd",
+        "type": "ui_chart",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "group": "5602045e8cc58776",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Altitude BMP (m)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1500",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 970,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c6957d595b64c3d5",
+        "type": "ui_chart",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "group": "5602045e8cc58776",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Altitude GPS (m)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1500",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 970,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dbdd7a2b96e551b5",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Altitude BMP em pés (ft)",
+        "func": "var obj={\n    \"name\":\"alti\",\n}\nmsg.topic = obj.name;\nmsg.number = (msg.payload)*3.281;\nnumber = msg.number;\nreturn msg;\n    ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 500,
+        "wires": [
+            [
+                "c1451ebf0373491a"
+            ]
+        ]
+    },
+    {
+        "id": "99dd7ca4c8296df3",
+        "type": "ui_chart",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "group": "4f83d523e179e7df",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Eixo de Rolagem (°)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-360",
+        "ymax": "360",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 960,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5753b9a755e341f1",
+        "type": "ui_chart",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "group": "4f83d523e179e7df",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Eixo de Arfagem (°)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-360",
+        "ymax": "360",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 970,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b069c80d652de630",
+        "type": "ui_chart",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "group": "cd188c9cd054d7d1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Velocidade Pitot (m/s)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 980,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f5edfd282d10a36a",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Recebe Dados",
+        "func": "var output = msg.payload.split(\",\");\n\nvar EixoRoll = parseFloat(output[0]);\nvar EixoArfa = parseFloat(output[1]);\nvar VelocGPS = parseFloat(output[2]);\nvar TempMPU = parseFloat(output[3]);\nvar TempBMP = parseFloat(output[4]);\nvar AltBMP = parseFloat(output[5]);\nvar Pressão = parseFloat(output[6]);\nvar Latitude = parseFloat(output[7]);\nvar Longitude = parseFloat(output[8]);\nvar AltGPS = parseFloat(output[9]);\nvar VelocPitot = parseFloat(output[10]);\nvar SRV1 = parseFloat(output[11]);\n\nvar v1 = {payload:EixoRoll};\nvar v2 = {payload:EixoArfa};\nvar v3 = {payload:VelocGPS};\nvar v4 = {payload:TempMPU};\nvar v5 = {payload:TempBMP};\nvar v6 = {payload:AltBMP};\nvar v7 = {payload:Pressão};\nvar v8 = {payload:Latitude};\nvar v9 = {payload:Longitude};\nvar v10 = {payload:AltGPS};\nvar v11 = {payload:VelocPitot};\nvar v12 = {payload:SRV1};\n\nreturn [v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12];\n\n",
+        "outputs": 12,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 1040,
+        "wires": [
+            [
+                "429d91243bde4992"
+            ],
+            [
+                "030c5c86d687c52f"
+            ],
+            [
+                "a2da1c657eb31217"
+            ],
+            [
+                "3f359ca0e6f32a81"
+            ],
+            [
+                "77f7ab09da347f81"
+            ],
+            [
+                "b8ad46cf40b73774"
+            ],
+            [
+                "a6ae6724a57dc2b0"
+            ],
+            [
+                "892b116cda422c9b"
+            ],
+            [
+                "c94d0c5b8f78d85f"
+            ],
+            [
+                "1c1ec3966e07dd45"
+            ],
+            [
+                "9c09ccf219bfc1a0"
+            ],
+            [
+                "17288e89f9459aa6"
+            ]
+        ]
+    },
+    {
+        "id": "bcba591467f2298b",
+        "type": "smooth",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "5",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 720,
+        "y": 260,
+        "wires": [
+            [
+                "475f5c5837f92d03",
+                "99dd7ca4c8296df3"
+            ]
+        ]
+    },
+    {
+        "id": "dd1f96db9aad2309",
+        "type": "smooth",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "5",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 720,
+        "y": 360,
+        "wires": [
+            [
+                "6dacaf469abf7a29",
+                "5753b9a755e341f1"
+            ]
+        ]
+    },
+    {
+        "id": "76da373c4711322b",
+        "type": "smooth",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "5",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 720,
+        "y": 420,
+        "wires": [
+            [
+                "1e14b4ce62140e67",
+                "f01f2d18bb97bf84"
+            ]
+        ]
+    },
+    {
+        "id": "012ae6b796583e22",
+        "type": "smooth",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "5",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 720,
+        "y": 500,
+        "wires": [
+            [
+                "dbdd7a2b96e551b5",
+                "9634d68adcc583cd"
+            ]
+        ]
+    },
+    {
+        "id": "c4a8dd2b43abc027",
+        "type": "smooth",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "5",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 720,
+        "y": 800,
+        "wires": [
+            [
+                "c6957d595b64c3d5",
+                "e0809634a3f69903"
+            ]
+        ]
+    },
+    {
+        "id": "d092ea32975ecadb",
+        "type": "smooth",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "5",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 720,
+        "y": 860,
+        "wires": [
+            [
+                "5d0939414e6e8d03",
+                "b069c80d652de630"
+            ]
+        ]
+    },
+    {
+        "id": "524dc683debce954",
+        "type": "link out",
+        "z": "680bced3b5172e1a",
+        "name": "Entrada de Dados",
+        "mode": "link",
+        "links": [
+            "dd653f4a138e5435",
+            "e7c03ba8fd318660"
+        ],
+        "x": 405,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "dd653f4a138e5435",
+        "type": "link in",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "links": [
+            "524dc683debce954"
+        ],
+        "x": 75,
+        "y": 1040,
+        "wires": [
+            [
+                "f5edfd282d10a36a"
+            ]
+        ]
+    },
+    {
+        "id": "429d91243bde4992",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.EixoRoll",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "EixoRoll",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "030c5c86d687c52f",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.EixoArfa",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "EixoArfa",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a2da1c657eb31217",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.VelocGPS",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "VelocGPS",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "77f7ab09da347f81",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.TempMPU",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "TempMPU",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b8ad46cf40b73774",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.TempBMP",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "TempBMP",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f359ca0e6f32a81",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.AltBMP",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "AltBMP",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a6ae6724a57dc2b0",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.Pressao",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Pressao",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "892b116cda422c9b",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.Lat",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Lat",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c94d0c5b8f78d85f",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.Long",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Long",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 1280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1c1ec3966e07dd45",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.AltGPS",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "AltGPS",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c09ccf219bfc1a0",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.VelocPit",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "VelocPit",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "477537abe6d2e207",
+        "type": "comment",
+        "z": "680bced3b5172e1a",
+        "name": "Apresentação Visual",
+        "info": "",
+        "x": 630,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "8936547356399a96",
+        "type": "comment",
+        "z": "680bced3b5172e1a",
+        "name": "Para Gravação de Dados",
+        "info": "",
+        "x": 450,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "0376d77fd52810d0",
+        "type": "csv",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "Data, Eixo Roll, Eixo Arfa, VelocGps, TempMPU, TempBMP, AltBMP, Pressao, Lat, Long, AltGPS, VelocPit, SRV1",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 990,
+        "y": 1180,
+        "wires": [
+            [
+                "593d80a87b76fb08"
+            ]
+        ]
+    },
+    {
+        "id": "593d80a87b76fb08",
+        "type": "file",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1140,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5dc94f4ca1a01429",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Escreve Dados Sensores",
+        "func": "var botao_on = global.get('botao');\nvar temp = new Date();\nvar ano = temp.getFullYear();\nvar dia = temp.getDate();\nvar mes = temp.getMonth();\nvar hora = temp.getHours();\nvar minuto = temp.getMinutes();\nvar segundos = temp.getSeconds();\nvar EixoRoll = global.get('EixoRoll');\nvar EixoArfa = global.get(\"EixoArfa\");\nvar VelocGPS = global.get('VelocGPS');\nvar TempMPU = global.get('TempMPU');\nvar TempBMP = global.get('TempBMP');\nvar AltBMP = global.get('AltBMP');\nvar Pressao = global.get('Pressao');\nvar Lat = global.get('Lat');\nvar Long = global.get('Long');\nvar AltGPS = global.get('AltGPS');\nvar VelocPit = global.get('VelocPit');\nvar SRV1 = global.get('SRV1');\nif(botao_on===0){\n   msg.payload=0; \n}\nelse{\nvar dados = dia+\"/\"+mes+\"/\"+ano+\"|\"+hora+\":\"+minuto+\":\"+segundos+\",\"\n            +EixoRoll+\",\"+EixoArfa+\",\"+VelocGPS+\",\"\n            +TempMPU+\",\"+TempBMP+\",\"+AltBMP+\",\"\n            +Pressao+\",\"+Lat+\",\"+Long+\",\"+AltGPS+\",\"+VelocPit+\",\"+SRV1;\nmsg.payload = dados;\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 1240,
+        "wires": [
+            [
+                "0376d77fd52810d0",
+                "03d3e8335d73f20c"
+            ]
+        ]
+    },
+    {
+        "id": "935865600ad572b0",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Nomeia Arquivo",
+        "func": "var temp = new Date();\nvar ano = temp.getFullYear();\nvar dia = temp.getDate();\nvar mes = temp.getMonth();\nvar hora = temp.getHours();\nvar minuto = temp.getMinutes();\nmsg.filename = \"C:/Users/Familia Soares/.node-red/\"+dia+\"_\"+mes+\"_\"+ano+\".csv\"     \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1240,
+        "wires": [
+            [
+                "5dc94f4ca1a01429"
+            ]
+        ]
+    },
+    {
+        "id": "886649f3d6821a81",
+        "type": "ui_button",
+        "z": "680bced3b5172e1a",
+        "name": "INICIAR GRAVAÇÃO",
+        "group": "bad6f4e2bf1664a5",
+        "order": 2,
+        "width": 4,
+        "height": 2,
+        "passthru": false,
+        "label": "GRAVAR",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "green",
+        "className": "",
+        "icon": "play_circle_fill",
+        "payload": "",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 720,
+        "y": 1160,
+        "wires": [
+            [
+                "fb7c6982435c1625",
+                "935865600ad572b0"
+            ]
+        ]
+    },
+    {
+        "id": "fb7c6982435c1625",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "botao",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 970,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "037106783cf23fa7",
+        "type": "ui_button",
+        "z": "680bced3b5172e1a",
+        "name": "PARAR GRAVAÇÃO",
+        "group": "bad6f4e2bf1664a5",
+        "order": 3,
+        "width": 4,
+        "height": 2,
+        "passthru": false,
+        "label": "PARAR",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "stop",
+        "payload": "0",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "global",
+        "x": 720,
+        "y": 1100,
+        "wires": [
+            [
+                "fb7c6982435c1625"
+            ]
+        ]
+    },
+    {
+        "id": "f85113ed0729c0f4",
+        "type": "while-loop",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "condi": "msg.payload !== 0",
+        "limit": false,
+        "limitTime": 10000,
+        "time": "wlf85113ed0729c0f4",
+        "timeType": "global",
+        "x": 970,
+        "y": 1320,
+        "wires": [
+            [],
+            [
+                "5dc94f4ca1a01429"
+            ]
+        ]
+    },
+    {
+        "id": "f2e46f6f7b114913",
+        "type": "ui_text",
+        "z": "680bced3b5172e1a",
+        "group": "bad6f4e2bf1664a5",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "Coordenadas",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1260,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "aa8ab99cac0c8012",
+        "type": "ui_text",
+        "z": "680bced3b5172e1a",
+        "group": "bad6f4e2bf1664a5",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "Gravação de Dados",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1280,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e384342b3a10ba91",
+        "type": "fs-file-lister",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "start": "C:\\Users\\Familia Soares\\.node-red",
+        "pattern": "*.*",
+        "folders": "*",
+        "hidden": true,
+        "lstype": "both",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 780,
+        "y": 1380,
+        "wires": [
+            [
+                "970569e94cf4bc04"
+            ]
+        ]
+    },
+    {
+        "id": "970569e94cf4bc04",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Padroniza Listagem de Arquivo",
+        "func": "for (var i=0; i<msg.payload.length; i++) {\n    msg.payload[i].stat.created = msg.payload[i].stat.created.toISOString().slice(0, 19).replace('T', ' '); //Padroniza a nomenclatura da msg create, com 19 caracter e substitui o T por um espaço.\n    msg.payload[i].stat.changed = msg.payload[i].stat.changed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.accessed = msg.payload[i].stat.accessed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.statusChanged = msg.payload[i].stat.statusChanged.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 1380,
+        "wires": [
+            [
+                "6a6a0b440345f082"
+            ]
+        ]
+    },
+    {
+        "id": "6a6a0b440345f082",
+        "type": "template",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<table width=\"100%\">\n    <tr><th>Nome do Arquivo</th><th>Tamanho</th><th>Dt. Criação</th><th>Ultima Alteração</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?filename={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
+        "output": "str",
+        "x": 1020,
+        "y": 1440,
+        "wires": [
+            [
+                "536c2719bfa21887"
+            ]
+        ]
+    },
+    {
+        "id": "536c2719bfa21887",
+        "type": "ui_template",
+        "z": "680bced3b5172e1a",
+        "group": "160e81fb.f1c86e",
+        "name": "",
+        "order": 6,
+        "width": "18",
+        "height": "6",
+        "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1160,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "73caf359409aeed8",
+        "type": "http in",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "url": "/download",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 580,
+        "y": 1480,
+        "wires": [
+            [
+                "151000d2ca8931f0"
+            ]
+        ]
+    },
+    {
+        "id": "0bd28828886bc38e",
+        "type": "http response",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1190,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "151000d2ca8931f0",
+        "type": "function",
+        "z": "680bced3b5172e1a",
+        "name": "Arquivo selecionado",
+        "func": "msg.filename = msg.req.query.filename; //Verifica qual arquivo foi clicado\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\"; //Disposição da msg para a saída\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 1480,
+        "wires": [
+            [
+                "b0c1eb557eea25ef"
+            ]
+        ],
+        "outputLabels": [
+            "Folder selected"
+        ]
+    },
+    {
+        "id": "b0c1eb557eea25ef",
+        "type": "file in",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "filename": "Ler Arquivo Selecionado",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1010,
+        "y": 1480,
+        "wires": [
+            [
+                "e1a95ca594099e12"
+            ]
+        ]
+    },
+    {
+        "id": "e1a95ca594099e12",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Cabeçalho para saída",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "text/csv",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Content-Disposition",
+                "pt": "msg",
+                "to": "contentdisposition",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 1540,
+        "wires": [
+            [
+                "0bd28828886bc38e"
+            ]
+        ]
+    },
+    {
+        "id": "03d3e8335d73f20c",
+        "type": "delay",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0.5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 800,
+        "y": 1320,
+        "wires": [
+            [
+                "f85113ed0729c0f4"
+            ]
+        ]
+    },
+    {
+        "id": "e7c03ba8fd318660",
+        "type": "link in",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "links": [
+            "524dc683debce954"
+        ],
+        "x": 685,
+        "y": 1380,
+        "wires": [
+            [
+                "e384342b3a10ba91"
+            ]
+        ]
+    },
+    {
+        "id": "51f6d5c792ecb25a",
+        "type": "smooth",
+        "z": "680bced3b5172e1a",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "5",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 720,
+        "y": 920,
+        "wires": [
+            [
+                "d6d955f0d95c0684",
+                "2cafa1638351e612"
+            ]
+        ]
+    },
+    {
+        "id": "d6d955f0d95c0684",
+        "type": "ui_gauge",
+        "z": "680bced3b5172e1a",
+        "name": "Corrente Servo 1",
+        "group": "505de3c1228fe9e9",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Corrente Servo 1",
+        "label": "A",
+        "format": "{{value|number:6}}",
+        "min": 0,
+        "max": "5",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "1,5",
+        "seg2": "3,0",
+        "className": "",
+        "x": 990,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "2cafa1638351e612",
+        "type": "ui_chart",
+        "z": "680bced3b5172e1a",
+        "name": "Corrente Servo 1",
+        "group": "505de3c1228fe9e9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Corrente SRV1",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "6",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 990,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "17288e89f9459aa6",
+        "type": "change",
+        "z": "680bced3b5172e1a",
+        "name": "Var.Global.SRV1",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "SRV1",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e0809634a3f69903",
+        "type": "ui_artlessgauge",
+        "z": "680bced3b5172e1a",
+        "group": "82d6b12344dd8896",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "Altitude GPS (m)",
+        "icon": "",
+        "label": "Alt GPS",
+        "unit": "m",
+        "layout": "linear",
+        "decimals": "1",
+        "differential": false,
+        "minmax": true,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 0,
+                "col": "#ceeed1",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 2000,
+                "col": "#ceeed1",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": 3,
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 970,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "3e912617b657342f",
+        "type": "ui_spacer",
+        "z": "680bced3b5172e1a",
+        "name": "spacer",
+        "group": "e448f4a1370c4a4f",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4e9529724c9e245e",
+        "type": "ui_spacer",
+        "z": "680bced3b5172e1a",
+        "name": "spacer",
+        "group": "c291cf55f21d9727",
+        "order": 2,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "8063ebc497b043cd",
+        "type": "ui_spacer",
+        "z": "680bced3b5172e1a",
+        "name": "spacer",
+        "group": "c291cf55f21d9727",
+        "order": 3,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "f6da9f7d0f6a60e7",
+        "type": "ui_spacer",
+        "z": "680bced3b5172e1a",
+        "name": "spacer",
+        "group": "c291cf55f21d9727",
+        "order": 5,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "5a623d579da79918",
+        "type": "ui_spacer",
+        "z": "680bced3b5172e1a",
+        "name": "spacer",
+        "group": "c291cf55f21d9727",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "3b5dadbc16604403",
+        "type": "ui_spacer",
+        "z": "680bced3b5172e1a",
+        "name": "spacer",
+        "group": "82d6b12344dd8896",
+        "order": 1,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "7302998e0b97eea2",
+        "type": "ui_spacer",
+        "z": "680bced3b5172e1a",
+        "name": "spacer",
+        "group": "82d6b12344dd8896",
+        "order": 3,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "18ed869f2ce6746a",
+        "type": "ui_spacer",
+        "z": "680bced3b5172e1a",
+        "name": "spacer",
+        "group": "82d6b12344dd8896",
+        "order": 5,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "8b4785fd59c2b89f",
+        "type": "ui_spacer",
+        "z": "680bced3b5172e1a",
+        "name": "spacer",
+        "group": "7082c79abc1d8c94",
+        "order": 1,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "01cdf0c1878e08fe",
+        "type": "ui_spacer",
+        "z": "680bced3b5172e1a",
+        "name": "spacer",
+        "group": "7082c79abc1d8c94",
+        "order": 3,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "d8ce56f46c896a00",
+        "type": "ui_spacer",
+        "z": "680bced3b5172e1a",
+        "name": "spacer",
+        "group": "7082c79abc1d8c94",
+        "order": 4,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "86e325ae.59b348",
+        "type": "serial-port",
+        "serialport": "COM4",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "500",
+        "bin": "false",
+        "out": "interbyte",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "82d6b12344dd8896",
+        "type": "ui_group",
+        "name": "Informações Barométricas",
+        "tab": "e8ce209a275868d4",
+        "order": 1,
+        "disp": false,
+        "width": "4",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7082c79abc1d8c94",
+        "type": "ui_group",
+        "name": "        Temperaturas",
+        "tab": "e8ce209a275868d4",
+        "order": 3,
+        "disp": false,
+        "width": "4",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9f2da61.3353758",
+        "type": "ui_group",
+        "name": "Voo",
+        "tab": "e8ce209a275868d4",
+        "order": 2,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4b04d399ad050f6b",
+        "type": "ui_group",
+        "name": "Mapa",
+        "tab": "c8299c811b74b322",
+        "order": 1,
+        "disp": true,
+        "width": "26",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "bad6f4e2bf1664a5",
+        "type": "ui_group",
+        "name": "Gravação de Dados/Coordenadas",
+        "tab": "e8ce209a275868d4",
+        "order": 4,
+        "disp": false,
+        "width": "4",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cd188c9cd054d7d1",
+        "type": "ui_group",
+        "name": "Velocidades",
+        "tab": "24f35d597fbd45b1",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5602045e8cc58776",
+        "type": "ui_group",
+        "name": "Altitudes",
+        "tab": "24f35d597fbd45b1",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4f83d523e179e7df",
+        "type": "ui_group",
+        "name": "Eixos",
+        "tab": "24f35d597fbd45b1",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "160e81fb.f1c86e",
+        "type": "ui_group",
+        "name": "Navegador de Arquivos",
+        "tab": "b63d1f91.68095",
+        "order": 1,
+        "disp": true,
+        "width": "18",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "505de3c1228fe9e9",
+        "type": "ui_group",
+        "name": "Servo1",
+        "tab": "8c8e8153faeef364",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e448f4a1370c4a4f",
+        "type": "ui_group",
+        "name": "Grupo1",
+        "tab": "",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e8ce209a275868d4",
+        "type": "ui_tab",
+        "name": "1. Principal",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c8299c811b74b322",
+        "type": "ui_tab",
+        "name": "2. Localização GPS",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "24f35d597fbd45b1",
+        "type": "ui_tab",
+        "name": "3. Gráficos",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "b63d1f91.68095",
+        "type": "ui_tab",
+        "name": "5. Arquivos",
+        "icon": "dashboard",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "8c8e8153faeef364",
+        "type": "ui_tab",
+        "name": "4. Corrente Servos",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]
